@@ -73,7 +73,8 @@ void *vec_resize(void *vec, size_t item_count)
     size_t real_count = VEC_CAP(item_count);
 
     meta = realloc(meta, sizeof(vec_meta_s) + meta->item_size * real_count);
-    meta->item_count = real_count;
+    /* Count will be set to the value given */
+    meta->item_count = item_count;
     meta->capacity = real_count;
 
     return meta + 1;
