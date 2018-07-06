@@ -25,6 +25,8 @@ int main()
     {
         printf("%d\n", numbers[i]);
     }
+
+    vec_destroy(numbers);
 }
 ```
 
