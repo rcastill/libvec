@@ -46,9 +46,10 @@ void *vec_create(size_t item_count, size_t item_size)
     {
         return vec_empty(item_size);
     }
-    vec_meta_s *meta = malloc(sizeof(vec_meta_s) + item_count * item_size);
+    
     size_t real_count = VEC_CAP(item_count);
-    meta->item_count = real_count;
+    vec_meta_s *meta = malloc(sizeof(vec_meta_s) + real_count * item_size);
+    meta->item_count = item_count;
     meta->item_size = item_size;
     meta->capacity = real_count;
     meta->expansion_profile = VEC_DEFAULT_EXPANSION_PROFILE;
