@@ -46,7 +46,7 @@ void *vec_create(size_t item_count, size_t item_size)
     {
         return vec_empty(item_size);
     }
-    
+
     size_t real_count = VEC_CAP(item_count);
     vec_meta_s *meta = malloc(sizeof(vec_meta_s) + real_count * item_size);
     meta->item_count = item_count;
@@ -112,6 +112,16 @@ void *vec_add_n(void *vec, size_t n)
 void *vec_add(void *vec)
 {
     return vec_add_n(vec, 1);
+}
+
+void *vec_insert(void *vec, size_t i)
+{
+    vec_meta_s *meta = vec_meta(vec);
+    char *it = vec;
+    memmove(it + (i + 1) * meta->item_size,
+            it + i * meta->item_size,
+            (meta->item_count - i) * meta->item_size);
+    return it + i * meta->item_size;
 }
 
 int vec_remove(void *vec, size_t idx)

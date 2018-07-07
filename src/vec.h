@@ -79,6 +79,23 @@ void *vec_add_n(void *vec, size_t n);
 void *vec_add(void *vec);
 
 /*
+ * Shifts all elements from index i + 1 (if any) to the right
+ * and returns pointer to liberated slot in i.
+ * 
+ * Important:
+ *  This function assumes vec_count() is enough to fit a new
+ *  item.
+ * 
+ * Example:
+ *  int *ivec = vec_new(int);
+ *  int *inspoint;
+ *  ivec = vec_add_n(ivec, 3);
+ *  inspoint = vec_insert(ivec, 1);
+ *  *inspoint = 42;
+ */
+void *vec_insert(void *vec, size_t i);
+
+/*
  * Remove item on `idx` position of `vec`
  */
 int vec_remove(void *vec, size_t idx);
