@@ -153,5 +153,8 @@ void *vec_last(void *vec)
 
 void vec_destroy(void *vec)
 {
-    free(vec_meta(vec));
+    if (vec != NULL)
+    {
+        free(vec_meta(vec));
+    }
 }
