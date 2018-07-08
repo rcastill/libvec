@@ -1,6 +1,7 @@
-CC=clang
+CC=gcc
 OUT=out
 SRC=src
+CFLAGS=#-g
 PREFIX=/usr/local
 
 all: libvec
@@ -9,7 +10,7 @@ init:
 	mkdir -p $(OUT)
 
 libvec: init
-	$(CC) -c $(SRC)/vec.c -o $(OUT)/libvec.o
+	$(CC) $(CFLAGS) -c $(SRC)/vec.c -o $(OUT)/libvec.o
 	ar rcs $(OUT)/libvec.a $(OUT)/libvec.o
 
 install: libvec
